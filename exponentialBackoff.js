@@ -24,7 +24,6 @@ module.exports.handler = async (event, context) => {
       else
         throw 'Failed!';
     } catch (err) {
-      console.log(record);
       let result = await sqs.getQueueUrl({ QueueName: "InputQueue"}).promise();
       let visibilityTimeout = Math.pow(2,record.attributes.ApproximateReceiveCount - 1) * 90;
       let receiptHandle = record.receiptHandle;
